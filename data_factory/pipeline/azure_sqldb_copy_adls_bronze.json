@@ -1,0 +1,118 @@
+{
+	"name": "azure_sqldb_copy_adls_bronze",
+	"properties": {
+		"activities": [
+			{
+				"name": "LoopForTable",
+				"type": "ForEach",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@variables('tablename')",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "CopyToBronze",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "AzureSqlSource",
+									"sqlReaderQuery": {
+										"value": "@concat('SELECT * FROM [dbo].[', item(), ']')\n",
+										"type": "Expression"
+									},
+									"queryTimeout": "02:00:00",
+									"partitionOption": "None"
+								},
+								"sink": {
+									"type": "DelimitedTextSink",
+									"storeSettings": {
+										"type": "AzureBlobFSWriteSettings"
+									},
+									"formatSettings": {
+										"type": "DelimitedTextWriteSettings",
+										"quoteAllText": true,
+										"fileExtension": ".txt"
+									}
+								},
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"typeConversion": true,
+									"typeConversionSettings": {
+										"allowDataTruncation": true,
+										"treatBooleanAsNumber": false
+									}
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "Azure_sql_etl_ds",
+									"type": "DatasetReference"
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "azur_etl_sink_ds",
+									"type": "DatasetReference",
+									"parameters": {
+										"foldername": {
+											"value": "@item()",
+											"type": "Expression"
+										},
+										"filename": {
+											"value": "@concat(item(),'.csv')",
+											"type": "Expression"
+										}
+									}
+								}
+							]
+						}
+					]
+				}
+			}
+		],
+		"parameters": {
+			"tablename": {
+				"type": "array",
+				"defaultValue": [
+					"Product",
+					"Region",
+					"Reseller",
+					"Sales",
+					"Salesperson",
+					"SalespersonRegion",
+					"Targets"
+				]
+			}
+		},
+		"variables": {
+			"tablename": {
+				"type": "Array",
+				"defaultValue": [
+					"Product",
+					"Region",
+					"Reseller",
+					"Sales",
+					"Salesperson",
+					"SalespersonRegion",
+					"Targets"
+				]
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2026-02-16T10:25:41Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

@@ -1,0 +1,9 @@
+{
+	"name": "HarshADFelt",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "b6b7974b-d3be-46f4-827e-6a882d1d6156",
+		"tenantId": "e3a6ed33-262f-4051-954a-044b4b8df384"
+	}
+}
