@@ -7,7 +7,7 @@
 		"typeProperties": {
 			"host": "C:\\Users\\pramo\\Downloads\\CRM+Sales+Opportunities",
 			"userId": "HARSHPAL",
-			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiI4ODcwZmJmNy1kMjQxLTQ5MjYtYWYwYy1hNDBjOGM0M2UyNTUiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiIyZTI2MGY4Yi03ZGQ0LTQwMDEtYWFiNS0xMDE3OTMwZWVhNzciLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
 		},
 		"connectVia": {
 			"referenceName": "onPremtoAzureIntegrationRunntime",
